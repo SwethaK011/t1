@@ -9,3 +9,7 @@ openai==1.8.0
 sentence-transformers==2.2.2
 langchain-community==0.0.32
 tiktoken==0.6.0
+portkey-ai==1.7.0
+python-dotenv==1.0.0
+streamlit-cookies-controller==0.0.4
+streamlit-cookies-manager==0.2.0
