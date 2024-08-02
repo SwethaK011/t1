@@ -41,12 +41,39 @@ st.set_page_config(
     page_title="Softsquare AI",
     page_icon="🤖",
 )
-
+ 
 controller = CookieController()
-a1=controller.get('ajs_anonymous_id')
-cookies = controller.getAll()
-
-
+ 
+if 'logged_in' not in st.session_state:
+    st.session_state.logged_in = False
+# Function to handle login
+def login(email):
+        st.session_state.logged_in = True
+# Register the cookie manager
+aq=controller.set('email_id','')
+# Check if the user has a unique ID cookie
+cookies=controller.getAll()
+if not st.session_state.logged_in:
+    if (aq is None):
+    # Generate a unique user ID
+        user_id = controller.get("ajs_anonymous_id")
+    # Set the user ID cookie
+        s1=st.text_input("Enter email")
+        controller.set("email_id",s1)
+        st.write(cookies)
+        login(s1)
+       
+    else:
+    # Retrieve the user ID from the cookie
+        user_id = controller.get("ajs_anonymous_id")
+        st.title("Confirmation")
+        Email=controller.get("email_id")
+        st.write("Is this ur email{Email}")
+        Email="hello"
+        st.write(cookies)
+        login(Email)
+       
+if st.session_state.logged_in:
 def get_user_id():
     if 'user_id' not in st.session_state:
         st.session_state['user_id'] = str(uuid.uuid4())
